@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Message for Sar</title>
+    
+    <!-- This is the CSS styling for your website -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+        :root {
+            --pink-light: #fff0f6;
+            --pink-medium: #ffb3d9;
+            --pink-dark: #ff69b4;
+            --pink-darker: #c72c7a;
+            --purple: #d9b8ff;
+            --yellow: #fff2cc;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ffeaf2 0%, #fff0f6 50%, #fff2cc 100%);
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            position: relative;
+            overflow-x: hidden;
+            transition: all 0.5s ease;
+        }
+
+        /* Color themes */
+        body.purple-theme {
+            --pink-light: #f3e8ff;
+            --pink-medium: #d8b4fe;
+            --pink-dark: #a855f7;
+            --pink-darker: #7e22ce;
+            background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 50%, #ddd6fe 100%);
+        }
+
+        body.blue-theme {
+            --pink-light: #dbeafe;
+            --pink-medium: #93c5fd;
+            --pink-dark: #3b82f6;
+            --pink-darker: #1d4ed8;
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 50%, #a5b4fc 100%);
+        }
+
+        body.pink-theme {
+            --pink-light: #fff0f6;
+            --pink-medium: #ffb3d9;
+            --pink-dark: #ff69b4;
+            --pink-darker: #c72c7a;
+            background: linear-gradient(135deg, #ffeaf2 0%, #fff0f6 50%, #fff2cc 100%);
+        }
+
+        body.red-theme {
+            --pink-light: #fef2f2;
+            --pink-medium: #fecaca;
+            --pink-dark: #ef4444;
+            --pink-darker: #dc2626;
+            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 50%, #fecaca 100%);
+        }
+
+        body.navy-theme {
+            --pink-light: #dbeafe;
+            --pink-medium: #60a5fa;
+            --pink-dark: #1e40af;
+            --pink-darker: #1e3a8a;
+            background: linear-gradient(135deg, #dbeafe 0%, #93c5fd 50%, #60a5fa 100%);
+        }
+
+        body.vintage-theme {
+            --pink-light: #fef3c7;
+            --pink-medium: #f59e0b;
+            --pink-dark: #d97706;
+            --pink-darker: #92400e;
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 50%, #fcd34d 100%);
+        }
+
+        /* Pick-up line popup */
+        .pickup-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            max-width: 300px;
+            width: 90%;
+            text-align: center;
+            border: 3px solid var(--pink-medium);
+            transition: transform 0.4s ease;
+        }
+
+        .pickup-popup.active {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .pickup-popup h3 {
+            color: var(--pink-darker);
+            margin-top: 0;
+            font-size: 1.3em;
+        }
+
+        .pickup-popup p {
+            font-size: 1.1em;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .pickup-popup button {
+            background-color: var(--pink-dark);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .pickup-popup button:hover {
+            background-color: var(--pink-darker);
+            transform: translateY(-2px);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Floating hearts animation */
+        .floating-hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--pink-dark);
+            transform: rotate(45deg);
+            opacity: 0.7;
+            animation: float 15s infinite linear;
+        }
+
+        .heart:before, .heart:after {
+            content: '';
+            width: 20px;
+            height: 20px;
+            background: var(--pink-dark);
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .heart:before {
+            top: -10px;
+            left: 0;
+        }
+
+        .heart:after {
+            top: 0;
+            left: -10px;
+        }
+
+        @keyframes float {
+            0% {
+                top: 100%;
+                left: 0%;
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                top: -10%;
+                left: 10%;
+                opacity: 0;
+            }
+        }
+
+        .screen {
+            display: none;
+            width: 100%;
+            max-width: 600px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        .content {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 25px;
+            box-shadow: 0 10px 25px rgba(255, 99, 178, 0.2);
+            border: 3px solid var(--pink-medium);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+
+        .content:before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, var(--pink-light), var(--purple), var(--yellow));
+            z-index: -1;
+            border-radius: 30px;
+            animation: gradientShift 10s ease infinite;
+            background-size: 400% 400%;
+            transition: all 0.5s ease;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .gif {
+            max-width: 200px;
+            margin-bottom: 20px;
+            border-radius: 20px;
+            border: 3px solid var(--pink-medium);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            animation: bounce 2s infinite alternate;
+        }
+
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-10px); }
+        }
+
+        p {
+            font-size: 1.1em;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            position: relative;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 15px;
+            transition: all 0.5s ease;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        button {
+            background-color: var(--pink-dark);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        button:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: 0.5s;
+        }
+
+        button:hover {
+            background-color: var(--pink-darker);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        button:hover:before {
+            left: 100%;
+        }
+
+        button:active {
+            transform: translateY(1px);
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
+
+        .option {
+            cursor: pointer;
+            background-color: var(--pink-light);
+            padding: 15px;
+            border-radius: 20px;
+            border: 2px solid var(--pink-medium);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .option:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 100%);
+            z-index: 1;
+        }
+
+        .option:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 12px 25px rgba(255, 99, 178, 0.3);
+            border-color: var(--pink-darker);
+        }
+
+        .option img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 10px;
+            border: 2px solid white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .option p {
+            font-size: 0.9em;
+            margin-bottom: 0;
+            color: var(--pink-darker);
+            font-weight: 600;
+            position: relative;
+            z-index: 2;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .gallery img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 2px solid white;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.08);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .music-list {
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        .music-item {
+            background-color: var(--pink-light);
+            padding: 15px;
+            border-radius: 20px;
+            margin-bottom: 15px;
+            border-left: 5px solid var(--pink-dark);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .music-item:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--pink-dark), var(--purple));
+        }
+
+        .music-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .music-item h3 {
+            margin-top: 0;
+            color: var(--pink-darker);
+            font-size: 1.2em;
+        }
+
+        .music-link {
+            display: inline-block;
+            background-color: var(--pink-dark);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            text-decoration: none;
+            margin-top: 10px;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .music-link:hover {
+            background-color: var(--pink-darker);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Color options */
+        .color-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .color-option {
+            height: 80px;
+            border-radius: 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .color-option:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .color-option.active {
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px var(--pink-darker), 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .color-purple {
+            background: linear-gradient(135deg, #a855f7, #7e22ce);
+        }
+
+        .color-blue {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+        }
+
+        .color-pink {
+            background: linear-gradient(135deg, #ff69b4, #c72c7a);
+        }
+
+        .color-red {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+        }
+
+        .color-navy {
+            background: linear-gradient(135deg, #1e40af, #1e3a8a);
+        }
+
+        .color-vintage {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+        }
+
+        /* Cute corner decorations */
+        .corner-decoration {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            z-index: 1;
+        }
+
+        .top-left {
+            top: 10px;
+            left: 10px;
+            transform: rotate(-15deg);
+        }
+
+        .top-right {
+            top: 10px;
+            right: 10px;
+            transform: rotate(15deg);
+        }
+
+        .bottom-left {
+            bottom: 10px;
+            left: 10px;
+            transform: rotate(15deg);
+        }
+
+        .bottom-right {
+            bottom: 10px;
+            right: 10px;
+            transform: rotate(-15deg);
+        }
+
+        .decoration-heart {
+            color: var(--pink-medium);
+            font-size: 24px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        /* Sparkle effect */
+        .sparkle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 10px 2px white;
+            animation: sparkle 3s infinite;
+            opacity: 0;
+        }
+
+        @keyframes sparkle {
+            0% { opacity: 0; transform: scale(0) rotate(0deg); }
+            50% { opacity: 1; transform: scale(1) rotate(180deg); }
+            100% { opacity: 0; transform: scale(0) rotate(360deg); }
+        }
+
+        /* Responsive adjustments for smaller screens */
+        @media (max-width: 480px) {
+            .content {
+                padding: 20px;
+            }
+
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            p {
+                font-size: 1em;
+            }
+
+            button {
+                padding: 10px 20px;
+            }
+
+            .options {
+                grid-template-columns: 1fr;
+            }
+
+            .color-options {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body class="pink-theme">
+
+    <!-- Pick-up line popup -->
+    <div class="overlay" id="overlay"></div>
+    <div class="pickup-popup" id="pickupPopup">
+        <h3>For Sar 💖</h3>
+        <p id="pickupLine">You're as beautiful as this color!</p>
+        <button onclick="closePopup()">Aww, thanks! 💕</button>
+    </div>
+
+    <!-- Floating hearts background -->
+    <div class="floating-hearts" id="hearts-container"></div>
+
+    <!-- This is the HTML content of your website -->
+
+    <!-- Initial Screen -->
+    <div id="initial-screen" class="screen active">
+        <div class="content">
+            <div class="corner-decoration top-left">
+                <div class="decoration-heart">❤️</div>
+            </div>
+            <div class="corner-decoration top-right">
+                <div class="decoration-heart">❤️</div>
+            </div>
+            <div class="corner-decoration bottom-left">
+                <div class="decoration-heart">❤️</div>
+            </div>
+            <div class="corner-decoration bottom-right">
+                <div class="decoration-heart">❤️</div>
+            </div>
+            
+            <img src="https://media.tenor.com/dSastOGQ7vIAAAAi/sweet-sweet-house.gif" alt="Cute animated house" class="gif">
+            <p>Hi Sar!! Click a button please! Last na jud ni nga adlaw dli nako mag sinamok yazzzz</p>
+            <div class="buttons">
+                <button onclick="showScreen('selection-screen')">Continue</button>
+                <button onclick="showScreen('no-thanks-screen')">No thanks</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- No Thanks Screen -->
+    <div id="no-thanks-screen" class="screen">
+        <div class="content">
+            <div class="corner-decoration top-left">
+                <div class="decoration-heart">💔</div>
+            </div>
+            <div class="corner-decoration top-right">
+                <div class="decoration-heart">💔</div>
+            </div>
+            
+            <img src="https://media.tenor.com/kq78UYOOPEAAAAAi/cat-sad.gif" alt="Sad cat" class="gif">
+            <p>Please Sar last Naman ni tan-awa lang akoang ge himo kagabie raba ko ga sugod ani HAHA</p>
+            <button onclick="showScreen('initial-screen')">Go back</button>
+        </div>
+    </div>
+
+    <!-- Selection Screen -->
+    <div id="selection-screen" class="screen">
+        <div class="content">
+            <div class="corner-decoration top-left">
+                <div class="decoration-heart">💖</div>
+            </div>
+            <div class="corner-decoration top-right">
+                <div class="decoration-heart">💖</div>
+            </div>
+            
+            <img src="https://media.tenor.com/-r71xTSUvD0AAAAi/peach-goma-love-finger-hearts.gif" alt="Peach and Goma making finger hearts" class="gif">
+            <p>Pick Sar! What you want to see! Haha</p>
+            <div class="options">
+                <div class="option" onclick="showScreen('face-screen')">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSAH96KIx3zDC10ukK1GuCQ7dvx9S5O6xCWg&s" alt="Option 1">
+                    <p>Click this Sar to see your beautiful, gorgeous, cute, magnificent face!</p>
+                </div>
+                <div class="option" onclick="showScreen('food-screen')">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5RtOXdSGwnvnBmEfc5ASJoxaVZhZSwepiI3m6tXuCtqrXAM-H85KdKM0&s=10" alt="Option 2">
+                    <p>If you click this Sar mo gawas imong fav dessert or food I guess?</p>
+                </div>
+                <div class="option" onclick="showScreen('perception-screen')">
+                    <img src="https://png.pngtree.com/png-vector/20230320/ourmid/pngtree-simple-flat-design-beauty-pink-woman-vector-png-image_6656617.png" alt="Option 3">
+                    <p>Click here Sar para makabalo ka unsa akoang pag tan-aw nimo HAHA</p>
+                </div>
+                <div class="option" onclick="showScreen('music-screen')">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRb-NzVkpq3Nlcia8moZGvBG5bk9nYMpNZSe7Y4VQYnX5m3CabnAR0j2hpr&s=10" alt="Option 4">
+                    <p>Click here Sar to see your favorite music!!</p>
+                </div>
+                <div class="option" onclick="showScreen('color-screen')">
+                    <img src="https://pbs.twimg.com/media/Fy2wK44WAAAUGMZ.jpg:large" alt="Option 5">
+                    <p>Sar Pick A Color!!!!!!!!!!!!!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Face Screen -->
+    <div id="face-screen" class="screen">
+        <div class="content">
+            <div class="corner-decoration top-left">
+                <div class="decoration-heart">✨</div>
+            </div>
+            <div class="corner-decoration top-right">
+                <div class="decoration-heart">✨</div>
+            </div>
+            
+            <img src="https://media.tenor.com/f_TC2j5AMvkAAAAj/bear-cute.gif" alt="Cute bear" class="gif">
+            <p>See Sar!! Gwapa man kaayo ka! Don't be insecure!, gwapa jud kaayo ka like promise!</p>
+            <div class="gallery">
+                <img src="https://i.imgur.com/LG07H10.jpeg" alt="Image of Sar 1">
+                <img src="https://i.imgur.com/IWd0QUh.jpeg" alt="Image of Sar 2">
+                <img src="https://cdn.discordapp.com/attachments/1429062880589910038/1432969143992451163/ssstik.io_1761715180268.jpg?ex=6902fc03&is=6901aa83&hm=96153373c932f72fad599dc4879880db8c8323e073ebcc1356a755ceaa1fc9ff&" alt="Image of Sar 3">
+                <img src="https://cdn.discordapp.com/attachments/1429062880589910038/1432969144440979506/ssstik.io_1761715183139.jpg?ex=6902fc03&is=6901aa83&hm=c8edc8175049081fa654e07cbf1ab568f853f85d3225589c52fa66e436f80c3a&" alt="Image of Sar 4">
+                <img src="https://cdn.discordapp.com/attachments/1429062880589910038/1432969145133043763/ssstik.io_1761715185500.jpg?ex=6902fc03&is=6901aa83&hm=d9e834dea075888432eac678e39aa9c41fa33f660f25620410d91db7f3cbbb91&" alt="Image of Sar 5">
+                <img src="https://cdn.discordapp.com/attachments/1429062880589910038/1432969145577766942/ssstik.io_1761715187811.jpg?ex=6902fc03&is=6901aa83&hm=163d92f4e349e1dc03511cdde45bdc9c4b1c24ad1e259b4fbd668c41eb4b2411&" alt="Image of Sar 6">
+            </div>
+            <button onclick="showScreen('selection-screen')">Pick again!</button>
+        </div>
+    </div>
+
+    <!-- Food Screen -->
+    <div id="food-screen" class="screen">
+        <div class="content">
+            <div class="corner-decoration top-left">
+                <div class="decoration-heart">🍡</div>
+            </div>
+            <div class="corner-decoration top-right">
+                <div class="decoration-heart">🥤</div>
+            </div>
+            
+            <img src="https://media.tenor.com/MLmk9OBAX3UAAAAi/dudu.gif" alt="Dudu Bubu" class="gif">
+            <p>Your Favorite dessert is Mochi!! Unya I think imong favorite drink is C2? I think Haha. Dapat mag kaon kag tarong Sar okay? Unya if ever nga mo hilak ka sa gabie ayawg kalimot ug put ice sa imong mata oks!?? Halag ma remindan tika or dli, you need to put ice okay!?? So that dli na mo hobag imong eyes.</p>
+            <button onclick="showScreen('selection-screen')">Go back</button>
+        </div>
+    </div>
+
+    <!-- Perception Screen -->
+    <div id="perception-screen" class="screen">
+        <div class="content">
+            <div class="corner-decoration top-left">
+                <div class="decoration-heart">😊</div>
+            </div>
+            <div class="corner-decoration top-right">
+                <div class="decoration-heart">😠</div>
+            </div>
+            
+            <img src="https://media.tenor.com/K0Op-0SpsvkAAAAi/dudu-cute.gif" alt="Cute Dudu" class="gif">
+            <p>Wala lang ge add lang tani HAHA. Soft man ka I think you are aware pero maldita lang HAHA pero maynalang cute ka masuko</p>
+            <button onclick="showScreen('selection-screen')">Go back</button>
+        </div>
+    </div>
+
+    <!-- Music Screen -->
+    <div id="music-screen" class="screen">
+        <div class="content">
+            <div class="corner-decoration top-left">
+                <div class="decoration-heart">🎵</div>
+            </div>
+            <div class="corner-decoration top-right">
+                <div class="decoration-heart">🎶</div>
+            </div>
+            
+            <img src="https://media.tenor.com/15YUsMWt4FEAAAAi/music.gif" alt="Music notes" class="gif">
+            <p>Look Sar!! Your favorite music oh!!!</p>
+            
+            <div class="music-list">
+                <div class="music-item">
+                    <h3>Mundo by IV of Spades</h3>
+                    <p>Charrr ka nindot ba sa music taste sa akoang crushiecakes HAHAHA Mundo. Can I ask nganong ganahan ka Ani!??</p>
+                    <a href="https://youtu.be/omFa4Yk9Fmg?si=BkiIVb8c5MOiD_FP" target="_blank" class="music-link">Listen to Mundo</a>
+                </div>
+                
+                <div class="music-item">
+                    <h3>Panaginip by Iluna</h3>
+                    <p>Awhieee.... Nganong Sad music namani Sar ☹️. Ayaw ana Sar....</p>
+                    <a href="https://youtu.be/x3XWCwy4OVk?si=zWYg1JjytGYTpol8" target="_blank" class="music-link">Listen to Panaginip</a>
+                </div>
+                
+                <div class="music-item">
+                    <h3>Iris by Goo Goo Dolls</h3>
+                    <p>Sar are you okay po ☹️?. Why is this sad songs...</p>
+                    <a href="https://youtu.be/NdYWuo9OFAw?si=jNhKT6e66nnPybfX" target="_blank" class="music-link">Listen to Iris</a>
+                </div>
+                
+                <div class="music-item">
+                    <h3>Panata by Tothapi</h3>
+                    <p>I also like this song Sar. Pero are you sure naka move on naka ☹️?, or ganahan ka mo first move sa crush nimo? Tell meeeee. Tabangan tika</p>
+                    <a href="https://youtu.be/kpF9Vo2zJ6Q?si=4hKqnSHhmx7xbn9m" target="_blank" class="music-link">Listen to Panata</a>
+                </div>
+                
+                <div class="music-item">
+                    <h3>Double Take By Dhruv</h3>
+                    <p>I also like this!!! And in love ka!???? Ikaw haaaaaaa</p>
+                    <a href="https://youtu.be/R8FHtIhWqNo?si=unn4Q2BBiG9g-Ebe" target="_blank" class="music-link">Listen to Double Take</a>
+                </div>
+            </div>
+            
+            <p>I'm really sorry Sar if naa Kay crush ☹️. Mora man ug ge pugngan tika... Sorry kaayo.... I'll stop na. HAHA. Pero okay ra at least dli naka uncomfortable..... HAHA take care of yourself Sar!! And this Monday sa Plaza rata kita!!! Pero basin mag howat² ka... Cleaners raba ko.... Ingni lang ko if you don't want me to text or have a Convo with you okay!???. Feel man jud nako na ge force ra tika. Don't reply if dli ka ganahan... For now mo distance lang ko gamay halag sakit HAHA charrrr. Unya sorry kaayo nga gamay ra akoang na butang ☹️ nag sugod ko Ani 2:24 and now look at the time na oh HAHAHA 4:16. I learned this just for you po 🤗. HAHA byeee Sar!!. Take good care of your body po ha!???</p>
+            
+            <button onclick="showScreen('selection-screen')">Go back</button>
+        </div>
+    </div>
+
+    <!-- Color Screen -->
+    <div id="color-screen" class="screen">
+        <div class="content">
+            <div class="corner-decoration top-left">
+                <div class="decoration-heart">🎨</div>
+            </div>
+            <div class="corner-decoration top-right">
+                <div class="decoration-heart">🌈</div>
+            </div>
+            
+            <img src="https://media.tenor.com/qHLLfih9jgYAAAAi/cat-sticker-line-sticker.gif" alt="Cute cat with paint" class="gif">
+            <p>Pick one Sar!! Naay surprise HAHA</p>
+            
+            <div class="color-options">
+                <div class="color-option color-purple" onclick="changeColor('purple')">Purple</div>
+                <div class="color-option color-blue" onclick="changeColor('blue')">Baby Blue</div>
+                <div class="color-option color-pink" onclick="changeColor('pink')">Light Pink</div>
+                <div class="color-option color-red" onclick="changeColor('red')">Wine Red</div>
+                <div class="color-option color-navy" onclick="changeColor('navy')">Navy Blue</div>
+                <div class="color-option color-vintage" onclick="changeColor('vintage')">Vintage</div>
+            </div>
+            
+            <button onclick="showScreen('selection-screen')">Go back</button>
+        </div>
+    </div>
+
+    <!-- This is the JavaScript that makes the buttons work -->
+    <script>
+        // Pick-up lines for each color
+        const pickupLines = {
+            purple: [
+                "Sar, are you purple? Because every time I see you, my heart turns violet with love! 💜",
+                "Sar, if beauty were time, you'd be an eternity in purple! 💜",
+                "Sar, are you a purple sunset? Because you make my heart skip a beat every time I see you! 💜",
+                "Sar, is your name Purple? Because you've colored my world beautifully! 💜",
+                "Sar, if you were a color, you'd be purple - rare, beautiful, and absolutely captivating! 💜",
+                "Sar, are you purple rain? Because you've showered my life with happiness! 💜",
+                "Sar, you must be purple because you're royalty in my eyes! 👑💜"
+            ],
+            blue: [
+                "Sar, are you the sky? Because whenever I look at you, I get lost in your beautiful blue! 💙",
+                "Sar, if you were a ocean, I'd dive right into your deep blue eyes! 💙",
+                "Sar, are you blue? Because you've painted my world with happiness! 💙",
+                "Sar, you must be baby blue - soft, calming, and absolutely adorable! 💙",
+                "Sar, are you the blue moon? Because seeing you is a rare and magical event! 💙",
+                "Sar, if feelings had colors, mine for you would be the prettiest shade of blue! 💙",
+                "Sar, you're like my favorite blue jeans - I never want to let you go! 💙"
+            ],
+            pink: [
+                "Sar, are you pink? Because you make my cheeks blush every time I see you! 💗",
+                "Sar, if love were a color, it would be the pink of your beautiful smile! 💗",
+                "Sar, are you cotton candy? Because you're sweet, pink, and I can't get enough of you! 💗",
+                "Sar, you must be light pink because you brighten up my darkest days! 💗",
+                "Sar, are you a pink rose? Because you're beautiful and make my heart bloom! 🌹💗",
+                "Sar, if happiness had a color, it would be the pink I feel when I'm with you! 💗",
+                "Sar, you're like my favorite pink bubble tea - sweet and always makes me happy! 💗"
+            ],
+            red: [
+                "Sar, are you wine red? Because you get better with time and I'm intoxicated by you! ❤️",
+                "Sar, if passion had a color, it would be the red of my heart beating for you! ❤️",
+                "Sar, are you a red rose? Because you're beautiful but handle with care - just like my heart! 🌹❤️",
+                "Sar, you must be wine red because you're classic, elegant, and unforgettable! ❤️",
+                "Sar, are you red? Because you make my heart race faster than a Ferrari! ❤️",
+                "Sar, if love were a flame, you'd be the beautiful red fire warming my soul! ❤️",
+                "Sar, you're like fine red wine - the more I know you, the more I fall for you! ❤️"
+            ],
+            navy: [
+                "Sar, are you navy blue? Because you're deep, mysterious, and I want to explore you forever! 💙",
+                "Sar, if the night sky had a name, it would be Sar - dark, beautiful, and full of stars! 🌌💙",
+                "Sar, are you the ocean at night? Because I'm drowning in your deep blue beauty! 💙",
+                "Sar, you must be navy blue because you're classic, timeless, and always in style! 💙",
+                "Sar, are you a navy uniform? Because you make my heart stand at attention! 💙",
+                "Sar, if dreams had colors, mine of you would be the deepest, most beautiful navy blue! 💙",
+                "Sar, you're like the night sky - dark, beautiful, and I could gaze at you forever! 💙"
+            ],
+            vintage: [
+                "Sar, are you vintage? Because like fine art, you get more beautiful with time! 🎨",
+                "Sar, if memories had colors, ours would be vintage - warm, nostalgic, and precious! 🎨",
+                "Sar, are you an antique? Because you're one of a kind and priceless to me! 🎨",
+                "Sar, you must be vintage because you're timeless, classic, and absolutely beautiful! 🎨",
+                "Sar, are you sepia? Because you make my past, present, and future look beautiful! 🎨",
+                "Sar, if love stories had colors, ours would be the most beautiful vintage tone! 🎨",
+                "Sar, you're like a vintage photograph - every moment with you is worth preserving forever! 🎨"
+            ]
+        };
+
+        // Track which pick-up lines have been used
+        const usedLines = {
+            purple: [],
+            blue: [],
+            pink: [],
+            red: [],
+            navy: [],
+            vintage: []
+        };
+
+        // Function to show screens
+        function showScreen(screenId) {
+            // First, hide all the screens
+            const screens = document.querySelectorAll('.screen');
+            screens.forEach(screen => {
+                screen.classList.remove('active');
+            });
+            
+            // Then, show only the one that was clicked
+            const activeScreen = document.getElementById(screenId);
+            activeScreen.classList.add('active');
+            
+            // Add sparkle effect
+            createSparkles();
+        }
+
+        // Function to change color theme
+        function changeColor(color) {
+            // Remove all color classes
+            document.body.classList.remove('purple-theme', 'blue-theme', 'pink-theme', 'red-theme', 'navy-theme', 'vintage-theme');
+            
+            // Add the selected color class
+            document.body.classList.add(`${color}-theme`);
+            
+            // Update active state for color options
+            const colorOptions = document.querySelectorAll('.color-option');
+            colorOptions.forEach(option => {
+                option.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Update hearts color
+            updateHeartsColor();
+            
+            // Add sparkle effect
+            createSparkles();
+            
+            // Show pick-up line
+            showPickupLine(color);
+        }
+
+        // Function to show a random pick-up line for the selected color
+        function showPickupLine(color) {
+            const availableLines = pickupLines[color].filter(line => !usedLines[color].includes(line));
+            
+            // If all lines have been used, reset the used lines for this color
+            if (availableLines.length === 0) {
+                usedLines[color] = [];
+                availableLines = [...pickupLines[color]];
+            }
+            
+            // Select a random line from available ones
+            const randomIndex = Math.floor(Math.random() * availableLines.length);
+            const selectedLine = availableLines[randomIndex];
+            
+            // Mark this line as used
+            usedLines[color].push(selectedLine);
+            
+            // Display the line in the popup
+            document.getElementById('pickupLine').textContent = selectedLine;
+            
+            // Show the popup and overlay
+            document.getElementById('pickupPopup').classList.add('active');
+            document.getElementById('overlay').classList.add('active');
+        }
+
+        // Function to close the popup
+        function closePopup() {
+            document.getElementById('pickupPopup').classList.remove('active');
+            document.getElementById('overlay').classList.remove('active');
+        }
+
+        // Update hearts color based on current theme
+        function updateHeartsColor() {
+            const hearts = document.querySelectorAll('.heart');
+            hearts.forEach(heart => {
+                heart.style.background = getComputedStyle(document.documentElement).getPropertyValue('--pink-dark');
+                heart.style.setProperty('--pink-dark', getComputedStyle(document.documentElement).getPropertyValue('--pink-dark'));
+            });
+        }
+
+        // Create floating hearts
+        function createHearts() {
+            const container = document.getElementById('hearts-container');
+            const heartCount = 15;
+            
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                
+                // Random position and animation delay
+                const left = Math.random() * 100;
+                const delay = Math.random() * 15;
+                
+                heart.style.left = `${left}%`;
+                heart.style.animationDelay = `${delay}s`;
+                
+                // Random size
+                const size = 10 + Math.random() * 20;
+                heart.style.width = `${size}px`;
+                heart.style.height = `${size}px`;
+                
+                // Random color
+                const colors = ['#ff69b4', '#ff85c0', '#ffb3d9', '#d9b8ff'];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                heart.style.background = color;
+                heart.style.setProperty('--pink-dark', color);
+                
+                container.appendChild(heart);
+            }
+        }
+
+        // Create sparkle effect
+        function createSparkles() {
+            const content = document.querySelector('.content.active');
+            const sparkleCount = 5;
+            
+            for (let i = 0; i < sparkleCount; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.classList.add('sparkle');
+                
+                // Random position
+                const left = 10 + Math.random() * 80;
+                const top = 10 + Math.random() * 80;
+                
+                sparkle.style.left = `${left}%`;
+                sparkle.style.top = `${top}%`;
+                
+                // Random animation delay
+                const delay = Math.random() * 2;
+                sparkle.style.animationDelay = `${delay}s`;
+                
+                content.appendChild(sparkle);
+                
+                // Remove sparkle after animation completes
+                setTimeout(() => {
+                    sparkle.remove();
+                }, 3000);
+            }
+        }
+
+        // Close popup when clicking overlay
+        document.getElementById('overlay').addEventListener('click', closePopup);
+
+        // Initialize the page
+        window.onload = function() {
+            createHearts();
+            createSparkles();
+        };
+    </script>
+
+</body>
+</html>
